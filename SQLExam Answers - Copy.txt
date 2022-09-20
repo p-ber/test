@@ -1,0 +1,30 @@
+USE test;
+
+SELECT CustomerTbl.CustomerNo, CustomerTbl.UnitID, CustomerTbl.LastName, CustomerTbl.FirstName, CustomerTbl.MiddleName, CustomerDtl.EquityTerm, CustomerDtl.EquityAmount, CustomerDtl.MATerm, CustomerDtl.MAAmount, CustomerDtl.MIR, CustomerDtl.FIRE, CustomerDtl.LoanAmt, CustomerDtl.IntRate,
+CASE WHEN InventoryTbl.Type = 'House & Lot' THEN InventoryTbl.HousePrice
+ELSE InventoryTbl.LotPrice
+END AS SellingPrice
+FROM CustomerTbl LEFT JOIN CustomerDtl ON CustomerDtl.CustomerNo = CustomerTbl.CustomerNo
+LEFT JOIN InventoryTbl ON CustomerTbl.UnitID = InventoryTbl.UnitID;
+
+UPDATE CustomerDtl 
+SET IntRate = 21 
+WHERE CustomerNo = 739662;
+
+SELECT * FROM CustomerDtl;
+
+DELETE CustomerTbl  
+FROM    CustomerTbl  
+INNER JOIN CustomerDtl  
+ON CustomerTbl.CustomerNo = CustomerDtl.CustomerNo
+WHERE  CustomerTbl.CustomerNo = 739664;  
+
+SELECT * FROM CustomerTbl;
+SELECT * FROM CustomerDtl;
+
+INSERT INTO CustomerTbl VALUES (739664, 'TRAMPE', 'MARJORIE', 'RIVERA', 'ARC-0101');
+INSERT INTO CustomerDtl VALUES (739664, 15, 250000.00, 120, 15062.00, 350, 234, 1200000.00, 10); 
+SELECT * FROM CustomerTbl;
+SELECT * FROM CustomerDtl;
+
+fybhwnkwnnwefnew
